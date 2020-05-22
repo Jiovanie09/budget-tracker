@@ -1,3 +1,4 @@
+// requiring what i will need for the app // 
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
@@ -21,6 +22,7 @@ mongoose.connect("mongodb://localhost/budget", {
 });
 
 // routes
+// requiring a api.js //
 app.use(require("./routes/api.js"));
 
 app.listen(PORT, () => {
