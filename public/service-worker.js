@@ -1,12 +1,12 @@
 // storing all the files the app needs //
 const FILES_TO_CACHE = [
-    "/",
-    "/public/index.html",
-    "/public/icons/icon-192x192.png",
-    "/public/icons/icon-512x512.png",
-    "/public/index.js",
-    "/manifest.webmanifest",
-    "/styles.css"
+
+    "./index.html",
+    "./assets/icons/icon-192x192.png",
+    "./assets/icons/icon-512x512.png",
+    "./assets/js/index.js",
+    "./manifest.webmanifest",
+    "./assets/styles/styles.css"
 ];
 
 // storing static file and data using caps because never going to change// 
@@ -30,7 +30,7 @@ self.addEventListener("activate", function (event) {
             return Promise.all(
                 keyList.map(key => {
                     if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
-                        console.log("removing old cache data", kay);
+                        console.log("removing old cache data", key);
                         return caches.delete(key);
                     }
                 })
@@ -45,29 +45,29 @@ self.addEventListener("fetch", function (event) {
     //caches successful to the api //
     if (event.request.url.includes("/api/")) {
 
-    
-    event.respondWith(
-        caches.open(DATA_CACHE_NAME).then(cache => {
-            return fetch(event.request)
-                .then(response => {
-                    // if the response was good, clone it and store it in the cache. //
-                    if (response.status === 200) {
-                        cache.put(event.request.url, response.clone());
-                    }
-                    return response;
-                })
-                .catch(err => {
-                    return cache.match(event.request);
-                });
-        }).catch(err => console.log(err))
-    )
-    return;
+
+        event.respondWith(
+            caches.open(DATA_CACHE_NAME).then(cache => {
+                return fetch(event.request)
+                    .then(response => {
+                        // if the response was good, clone it and store it in the cache. //
+                        if (response.status === 200) {
+                            cache.put(event.request.url, response.clone());
+                        }
+                        return response;
+                    })
+                    .catch(err => {
+                        return cache.match(event.request);
+                    });
+            }).catch(err => console.log(err))
+        )
+        return;
     }
     event.respondWith(
         caches.open(CACHE_NAME).then(cache => {
-          return cache.match(event.request).then(response => {
-            return response || fetch(event.request);
-          });
+            return cache.match(event.request).then(response => {
+                return response || fetch(event.request);
+            });
         })
-      );
+    );
 })
