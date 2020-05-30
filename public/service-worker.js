@@ -1,12 +1,14 @@
 // storing all the files the app needs //
 const FILES_TO_CACHE = [
-
-    "./index.html",
-    "./assets/icons/icon-192x192.png",
-    "./assets/icons/icon-512x512.png",
-    "./assets/js/index.js",
-    "./manifest.webmanifest",
-    "./assets/styles/styles.css"
+    "/",
+    "/db.js",
+    "/index.html",
+    "/assets/icons/icon-192x192.png",
+    "/assets/icons/icon-512x512.png",
+    "/assets/js/index.js",
+    "/manifest.webmanifest",
+    "/assets/styles/styles.css",
+    'https://cdn.jsdelivr.net/npm/chart.js@2.8.0'
 ];
 
 // storing static file and data using caps because never going to change// 

@@ -3,8 +3,9 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const compression = require("compression");
+require("dotenv").config();
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 const app = express();
 
@@ -16,9 +17,12 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/budget"|| "mongodb://jio:america1@ds141623.mlab.com:41623/heroku_ow1m6pjv", {
-  useNewUrlParser: true,
-  useFindAndModify: false
+var MONGODB_URI = process.env.MONGODB_URI || process.env.REMOTE;
+
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
 });
 
 // routes

@@ -1,6 +1,6 @@
 {
-    "short_name": "icons",
-    "name": "icons",
+    "name": "Budget-tracker",
+    "short_name": "budget-tracker",
     "icons": [
         {
             "src": "./assets/icons/icon-192x192.png",
