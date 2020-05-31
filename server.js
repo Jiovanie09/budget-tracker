@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8000;
 
 const app = express();
 
-app.use(logger("dev"));
+
 
 app.use(compression());
 app.use(express.urlencoded({ extended: true }));
